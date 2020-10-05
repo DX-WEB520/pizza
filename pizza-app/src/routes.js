@@ -38,18 +38,18 @@ export const routes = [   //前面加export是为了把routes进行公开
     {path:'/menu',name:'menuLink',component:Menu},
     {path:'/register',name:'registerLink',component:Register},
     {path:'/admin',component:Admin,
-        // beforeEnter:(to ,from ,next) => {
-        // //路由独享守卫
-        // //alert('非登录状态，不能访问此页面！');
-        // //next(false);
-        // //判断store.gettes.isLogin === false
-        // if(to.path == '/login' || to.path == '/register'){
-        //   next();
-        // }else{
-        //   alert('您还没有登录，请先登录！');
-        //   next('/login');
-        // }
-        //}
+        beforeEnter:(to ,from ,next) => {
+        //路由独享守卫
+        //alert('非登录状态，不能访问此页面！');
+        //next(false);
+        //判断store.gettes.isLogin === false
+        if(to.path == '/login' || to.path == '/register'){
+          next();
+        }else{
+          alert('您还没有登录，请先登录！');
+          next('/login');
+        }
+        }
    },
     {path:'*',redirect:'/'}
   ]
